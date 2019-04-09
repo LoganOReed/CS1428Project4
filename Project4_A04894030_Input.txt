@@ -1,7 +1,8 @@
 Your grade is too low and needs improvements
-Congratulations, Your performance is Excellence
+Congratulations, Your performance is Excellent
 Logan Reed
 19
+A04894030
 9002, Curlew Drive, Austin, TX 78748
 1
 (512) 555 - 1234
@@ -26,6 +27,7 @@ MATH3373
 88.8
 Emily Baggins
 20
+A01234567
 4005 Johnson Drive, San Marcos, TX, 78666
 2
 (512) 487 - 9800
@@ -50,6 +52,7 @@ CHEM2241
 23.6
 Honda San
 26
+A09876543
 1234 Yaoi St, Buda, Tx, 78610 
 5
 (512) 123 - 6667
