@@ -85,6 +85,44 @@ int main()
         getline(fin, nonNumeric[i][3]);
         getline(fin, nonNumeric[i][4]);
 
+        //verifying information
+
+        if(numericOne[i][0] < 1 || numericOne[i][0] > 90){
+            fout << "Age is not of the correct type" << endl;
+            continue;
+        }
+
+        if(numericOne[i][1] < 1 || numericOne[i][1] > 90){
+            fout << "Years is not of the correct type" << endl;
+            continue;
+        }
+
+
+        if(nonNumeric[i][0].length() > 50){
+            fout << "Name is not of the correct type" << endl;
+            continue;
+        }
+
+        if(nonNumeric[i][1].length() > 50){
+            fout << "Student ID is not of the correct type" << endl;
+            continue;
+        }
+
+        if(nonNumeric[i][2].length() > 50){
+            fout << "Address is not of the correct type" << endl;
+            continue;
+        }
+
+        if(nonNumeric[i][3].length() > 30){
+            fout << "Telephone Number is not of the correct type" << endl;
+            continue;
+        }
+
+        if(nonNumeric[i][4].length() > 20){
+            fout << "SSN is not of the correct type" << endl;
+            continue;
+        }
+
         //Courses
         for(int j = 0; j < NUM_COURSES; j++)
             {
@@ -99,10 +137,73 @@ int main()
 
                 }
                 fin.ignore();
+
+                //compute final grade for course
+
+                numericTwo[i][j][5] = CURVE_ONE*numericTwo[i][j][0] + CURVE_TWO*numericTwo[i][j][1]+
+                CURVE_THREE*numericTwo[i][j][2]+ CURVE_FOUR*numericTwo[i][j][3] + CURVE_FINAL*numericTwo[i][j][4];
+
+                //compute letter grade
+
+                if(numericTwo[i][j][5] < 70)
+            {
+                letterGrade[i][j] = 'F';
+            }else if(numericTwo[i][j][5] < 80)
+            {
+                letterGrade[i][j]= 'C';
+                }else if(numericTwo[i][j][5] < 90)
+            {
+                letterGrade[i][j] = 'B';
+                }else
+            {
+                letterGrade[i][j] = 'A';
+                }
+
             }
         }
 
 
+    //printing info in a table
+
+    //students
+
+    fout << setw(41) << "Student Grade Sheet: " << endl << endl;
+
+    for (int i = 0; i < NUM_STUDENTS; i++)
+        {
+        fout << right << setw(25) << "Student Name" << setw(10) << "" << left << setw(30) << nonNumeric[i][0] << endl;
+        fout << right << setw(25) << "Student Age" << setw(10) << "" << left << setw(30) << numericOne[i][0] << endl;
+        fout << right << setw(25) << "Student ID" << setw(10) << "" << left << setw(30) << nonNumeric[i][1] << endl;
+        fout << right << setw(25) << "Student Address" << setw(10) << "" << left << setw(30) << nonNumeric[i][2] << endl;
+        fout << right << setw(25) << "Years at Texas State" << setw(10) << "" << left << setw(30) << numericOne[i][1] << endl;
+        fout << right << setw(25) << "Telephone Number" << setw(10) << "" << left << setw(30) << nonNumeric[i][3] << endl;
+        fout << right << setw(25) << "Social Security Number" << setw(10) << "" << left << setw(30) << nonNumeric[i][4] << endl << endl;
+
+        //classes
+        for (int j = 0; j < NUM_COURSES; j++)
+            {
+
+            fout << right << setw(25) << "Course Code" << setw(10) << "" << left << setw(30) << nonNumeric[i][5+j] << endl;
+
+
+            fout << right << setw(25) << "Test One Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][0] << endl;
+            fout << right << setw(25) << "Test Two Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][1] << endl;
+            fout << right << setw(25) << "Test Three Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][2] << endl;
+            fout << right << setw(25) << "Test Four Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][3] << endl;
+            fout << right << setw(25) << "Final Test Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][4] << endl;
+            fout << right << setw(25) << "Final Grade for Class" << setw(10) << "" << left << setw(30) << numericTwo[i][j][5] << endl << endl;
+            fout << right << setw(25) << "Final Letter Grade" << setw(10) << "" << left << setw(30) << letterGrade[i][j] << endl << endl;
+
+            if(numericTwo[i][j][5] >= 90){
+                fout << "" << congrats[1] << endl << endl;
+            }else if (numericTwo[i][j][5] < 70){
+                fout << "" << congrats[0] << endl << endl;
+            }
+
+            }
+        }
+
+/*
     //printing arrays to check if they read correct
 
     //nonNumeric
@@ -122,11 +223,13 @@ int main()
     //numericTwo
     for(int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
-            for (int k = 0; k < 5; k++){
+            for (int k = 0; k < 6; k++){
                 cout << numericTwo[i][j][k] << endl;
             }
         }
     }
+
+    */
 
     //close files
     fin.close();
