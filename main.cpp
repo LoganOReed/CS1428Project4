@@ -129,11 +129,21 @@ int main()
 
             getline(fin, nonNumeric[i][j+5]);
 
+            if(nonNumeric[i][j+5].length() > 10){
+                fout << "Course Number is not of the correct type" << endl;
+                continue;
+            }
+
             //Tests
             for(int k = 0; k < NUM_TESTS; k++)
                 {
 
                 fin >> numericTwo[i][j][k];
+
+                if(numericTwo[i][j][k] < 1.00 || numericTwo[i][j][k] > 100.0){
+                        fout << "Grade is not within bounds" << endl;
+                        break;
+                    }
 
                 }
                 fin.ignore();
@@ -186,13 +196,13 @@ int main()
             fout << right << setw(25) << "Course Code" << setw(10) << "" << left << setw(30) << nonNumeric[i][5+j] << endl;
 
 
-            fout << right << setw(25) << "Test One Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][0] << endl;
-            fout << right << setw(25) << "Test Two Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][1] << endl;
-            fout << right << setw(25) << "Test Three Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][2] << endl;
-            fout << right << setw(25) << "Test Four Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][3] << endl;
-            fout << right << setw(25) << "Final Test Score" << setw(10) << "" << left << setw(30) << numericTwo[i][j][4] << endl;
-            fout << right << setw(25) << "Final Grade for Class" << setw(10) << "" << left << setw(30) << numericTwo[i][j][5] << endl << endl;
-            fout << right << setw(25) << "Final Letter Grade" << setw(10) << "" << left << setw(30) << letterGrade[i][j] << endl << endl;
+            fout << right << setw(25) << "Test One Score" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][0] << endl;
+            fout << right << setw(25) << "Test Two Score" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][1] << endl;
+            fout << right << setw(25) << "Test Three Score" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][2] << endl;
+            fout << right << setw(25) << "Test Four Score" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][3] << endl;
+            fout << right << setw(25) << "Final Test Score" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][4] << endl;
+            fout << right << setw(25) << "Final Grade for Class" << setw(10) << "" << left << setw(30) << setprecision(4) << numericTwo[i][j][5] << endl << endl;
+            fout << right << setw(25) << "Final Letter Grade" << setw(10) << "" << left << setw(30) << setprecision(4) << letterGrade[i][j] << endl << endl;
 
             if(numericTwo[i][j][5] >= 90){
                 fout << "" << congrats[1] << endl << endl;
@@ -202,34 +212,6 @@ int main()
 
             }
         }
-
-/*
-    //printing arrays to check if they read correct
-
-    //nonNumeric
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 8; j++){
-            cout << nonNumeric[i][j] << endl;
-        }
-    }
-
-    //numericOne
-    for(int i = 0; i < 3; i++){
-        for (int j = 0; j < 2; j++){
-            cout << numericOne[i][j] << endl;
-        }
-    }
-
-    //numericTwo
-    for(int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            for (int k = 0; k < 6; k++){
-                cout << numericTwo[i][j][k] << endl;
-            }
-        }
-    }
-
-    */
 
     //close files
     fin.close();
